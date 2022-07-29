@@ -92,6 +92,11 @@ pub struct PermissionsPlus {
     pub xattrs:      bool,
 }
 
+#[derive(Clone)]
+pub struct MimeType {
+    pub mime_type: String,
+}
+
 
 /// The permissions encoded as octal values
 #[derive(Copy, Clone)]

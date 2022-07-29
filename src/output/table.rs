@@ -41,6 +41,7 @@ pub struct Columns {
     pub blocks: bool,
     pub group: bool,
     pub git: bool,
+    pub mime_type: bool,
     pub octal: bool,
 
     // Defaults to true:
@@ -105,6 +106,10 @@ impl Columns {
             columns.push(Column::GitStatus);
         }
 
+        if self.mime_type {
+            columns.push(Column::MimeType);
+        }
+
         columns
     }
 }
@@ -122,6 +127,7 @@ pub enum Column {
     HardLinks,
     Inode,
     GitStatus,
+    MimeType,
     Octal,
 }
 
@@ -160,6 +166,7 @@ impl Column {
             Self::HardLinks     => "Links",
             Self::Inode         => "inode",
             Self::GitStatus     => "Git",
+            Self::MimeType      => "MimeType",
             Self::Octal         => "Octal",
         }
     }
@@ -393,6 +400,8 @@ impl<'a, 'f> Table<'a> {
         }
     }
 
+
+
     fn octal_permissions(&self, file: &File<'_>) -> f::OctalPermissions {
         f::OctalPermissions {
             permissions: file.permissions(),
@@ -422,6 +431,9 @@ impl<'a, 'f> Table<'a> {
             Column::Group => {
                 file.group().render(self.theme, &*self.env.lock_users(), self.user_format)
             }
+            Column::MimeType => {
+                self.mime_type(file).render()
+            }
             Column::GitStatus => {
                 self.git_status(file).render(self.theme)
             }
@@ -441,6 +453,12 @@ impl<'a, 'f> Table<'a> {
             Column::Timestamp(TimeType::Accessed)  => {
                 file.accessed_time().render(self.theme.ui.date, &self.env.tz, self.time_format)
             }
+        }
+    }
+
+    fn mime_type(&self, file: &File<'_>) -> f::MimeType {
+        f::MimeType {
+            mime_type: tree_magic_mini::from_filepath(file.path.as_path()).unwrap_or_default().to_string()
         }
     }
 

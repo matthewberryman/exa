@@ -13,6 +13,9 @@ pub use self::groups::Colours as GroupColours;
 mod inode;
 // inode uses just one colour
 
+mod mimetype;
+// mimetype uses just one colour for now
+
 mod links;
 pub use self::links::Colours as LinksColours;
 

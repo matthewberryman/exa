@@ -210,8 +210,9 @@ impl Columns {
         let permissions = ! matches.has(&flags::NO_PERMISSIONS)?;
         let filesize =    ! matches.has(&flags::NO_FILESIZE)?;
         let user =        ! matches.has(&flags::NO_USER)?;
+        let mime_type: bool = true;
 
-        Ok(Self { time_types, inode, links, blocks, group, git, octal, permissions, filesize, user })
+        Ok(Self { time_types, inode, links, blocks, group, git, octal, permissions, filesize, user, mime_type })
     }
 }
 
