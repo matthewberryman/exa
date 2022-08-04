@@ -57,6 +57,7 @@ LONG VIEW OPTIONS
   --time-style         how to format timestamps (default, iso, long-iso, full-iso)
   --no-permissions     suppress the permissions field
   --octal-permissions  list each file's permission in octal format
+  --mime-types         list MIME type for each file
   --no-filesize        suppress the filesize field
   --no-user            suppress the user field
   --no-time            suppress the time field";

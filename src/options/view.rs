@@ -201,16 +201,16 @@ impl Columns {
         let time_types = TimeTypes::deduce(matches)?;
         let git = matches.has(&flags::GIT)?;
 
-        let blocks = matches.has(&flags::BLOCKS)?;
-        let group  = matches.has(&flags::GROUP)?;
-        let inode  = matches.has(&flags::INODE)?;
-        let links  = matches.has(&flags::LINKS)?;
-        let octal  = matches.has(&flags::OCTAL)?;
+        let blocks    = matches.has(&flags::BLOCKS)?;
+        let group     = matches.has(&flags::GROUP)?;
+        let inode     = matches.has(&flags::INODE)?;
+        let links     = matches.has(&flags::LINKS)?;
+        let octal     = matches.has(&flags::OCTAL)?;
+        let mime_type: bool = matches.has(&flags::MIME_TYPES)?;
 
         let permissions = ! matches.has(&flags::NO_PERMISSIONS)?;
         let filesize =    ! matches.has(&flags::NO_FILESIZE)?;
         let user =        ! matches.has(&flags::NO_USER)?;
-        let mime_type: bool = true;
 
         Ok(Self { time_types, inode, links, blocks, group, git, octal, permissions, filesize, user, mime_type })
     }

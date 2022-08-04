@@ -65,6 +65,8 @@ pub static NO_ICONS: Arg = Arg { short: None, long: "no-icons", takes_value: Tak
 pub static GIT:       Arg = Arg { short: None,       long: "git",               takes_value: TakesValue::Forbidden };
 pub static EXTENDED:  Arg = Arg { short: Some(b'@'), long: "extended",          takes_value: TakesValue::Forbidden };
 pub static OCTAL:     Arg = Arg { short: None,       long: "octal-permissions", takes_value: TakesValue::Forbidden };
+pub static MIME_TYPES: Arg = Arg { short: None,      long: "mime-types",
+takes_value: TakesValue::Forbidden};
 
 
 pub static ALL_ARGS: Args = Args(&[
@@ -80,5 +82,5 @@ pub static ALL_ARGS: Args = Args(&[
     &BLOCKS, &TIME, &ACCESSED, &CREATED, &TIME_STYLE,
     &NO_PERMISSIONS, &NO_FILESIZE, &NO_USER, &NO_TIME, &NO_ICONS,
 
-    &GIT, &EXTENDED, &OCTAL
+    &GIT, &EXTENDED, &OCTAL, &MIME_TYPES
 ]);
